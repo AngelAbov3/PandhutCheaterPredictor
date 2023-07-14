@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 class Program {
     
-    static async Task CheckStats(string id, string serverType) {
+    static async Task CheckStats(string id, string serverType, bool checkHeadShots, bool checkKD, float headshotRate, float maxKdRatio) {
         using (HttpClient client = new HttpClient()) {
             try {
                 HttpResponseMessage response = await client.GetAsync($"https://api.pandahut.net/api/KillStats/{serverType}/{id}");
@@ -17,6 +17,7 @@ class Program {
                 JObject jsonObject = JObject.Parse(responseBody);
                 float kills = (int)jsonObject.GetValue("kills");
                 float headshots = (int)jsonObject.GetValue("headshots");
+                float deaths = (int)jsonObject.GetValue("deaths");
 
                 if (headshots == 0) {
                     return;
@@ -26,13 +27,28 @@ class Program {
                     return;
                 }
 
+                if (deaths == 0) {
+                    return;
+                }
                 
-
-                if (headshots/kills > 0.80 && headshots/kills < 1) {
-
-                    Console.WriteLine($"\n\n[-] Player has a high headshot rate\n[-] SteamID: {id} Kills: {kills} Headshots: {headshots} Rate: {headshots/kills}% \n");
+                if (checkHeadShots) {
+                    if (headshots / kills > headshotRate && headshots / kills < 1) {
+                        Console.WriteLine($"\n\n[-] Player has a high headshot rate\n[-] SteamID: {id} Kills: {kills} Headshots: {headshots} Rate: {headshots / kills}% \n");
+                    }
+                    else {
+                        Console.Write(".");
+                    }
                 }
 
+                if (checkKD) {
+                    if (kills/deaths > maxKdRatio) {
+
+                        Console.WriteLine($"\n\n[-] Player has a KD ratio\n[-] SteamID: {id} Kills: {kills} Headshots: {headshots} KD: {kills/deaths} \n");
+                    }
+                    else {
+                        Console.Write(".");
+                    }
+                }
             }
             catch (HttpRequestException ex) {
                 Console.WriteLine("Error: " + ex.Message);
@@ -45,11 +61,33 @@ class Program {
         Console.WriteLine("[+] Currently supported servers #4, #19, #26, #30 or type exit to close");
         Console.WriteLine("[+] Press CTRL + C to close at anytime, highlight and press enter to copy");
         Console.Write("[+] Input server number: ");
-
         string inputS = Console.ReadLine();
+
+        Console.Write($"[+] Check for headshots true/false: ");
+        bool checkHeadshots = bool.Parse(Console.ReadLine());
+
+        float headshotRate = 0;
+        if (checkHeadshots) {
+            Console.Write($"[+] Input headshot rate as a decimal: ");
+            headshotRate = float.Parse(Console.ReadLine());
+        }
+
+        Console.Write($"[+] Check for KD true/false: ");
+        bool checkKD = bool.Parse(Console.ReadLine());
+
+        float maxKdRatio = 0;
+        if (checkKD) {
+            Console.Write($"[+] Input KD ratio as a decimal: ");
+            maxKdRatio = float.Parse(Console.ReadLine());
+        }
 
         if (inputS.ToLower() == "exit") {
             return;
+        }
+
+        if (!checkKD || !checkHeadshots) {
+            Console.Write($"\n\n\n\n\n");
+            await Main();
         }
 
         int input = Convert.ToInt32(inputS);
@@ -91,9 +129,7 @@ class Program {
             List<string> idList = ParseIdsFromJson(responseBody);
 
             foreach (string id in idList) {
-                await CheckStats(id, serverType);
-
-                Console.Write(".");
+                await CheckStats(id, serverType, checkHeadshots, checkKD, headshotRate, maxKdRatio);
             }
 
                 Console.WriteLine($"\n\nAll players checked!!!!\n\n\n\n\n");
