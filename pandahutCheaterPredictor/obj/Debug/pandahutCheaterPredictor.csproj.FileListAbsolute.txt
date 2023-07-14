@@ -1,0 +1,11 @@
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\bin\Debug\pandahutCheaterPredictor.exe.config
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\bin\Debug\pandahutCheaterPredictor.exe
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\bin\Debug\pandahutCheaterPredictor.pdb
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\obj\Debug\pandahutCheaterPredictor.csproj.AssemblyReference.cache
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\obj\Debug\pandahutCheaterPredictor.csproj.SuggestedBindingRedirects.cache
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\obj\Debug\pandahutCheaterPredictor.csproj.CoreCompileInputs.cache
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\obj\Debug\pandahutCheaterPredictor.exe
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\obj\Debug\pandahutCheaterPredictor.pdb
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\bin\Debug\Newtonsoft.Json.dll
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\bin\Debug\Newtonsoft.Json.xml
+E:\Code\C#\pandahutCheaterPredictor\pandahutCheaterPredictor\obj\Debug\pandahutCheaterPredictor.csproj.CopyComplete
