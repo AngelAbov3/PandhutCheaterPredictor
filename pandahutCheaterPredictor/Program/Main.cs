@@ -23,7 +23,7 @@ class Program {
                     return;
                 }
 
-                if (kills == 0) {
+                if (kills == 0 || kills < 4) {
                     return;
                 }
 
@@ -32,19 +32,21 @@ class Program {
                 }
                 
                 if (checkHeadShots) {
-                    if (headshots / kills > headshotRate && headshots / kills < 1) {
+                    if (headshots / kills > headshotRate /*&& headshots / kills < 1*/) {
                         Console.WriteLine($"\n\n[-] Player has a high headshot rate higher than {headshotRate}%\n[-] SteamID: {id} Kills: {kills} Headshots: {headshots} Rate: {headshots / kills}% Deaths: {deaths}\n");
                     }
                 }
-                /*
+
                 if (checkKD) {
                     if (kills/deaths > maxKdRatio) {
-
                         Console.WriteLine($"\n\n[-] Player has a KD ratio higher than {maxKdRatio}\n[-] SteamID: {id} Kills: {kills} Headshots: {headshots} KD: {kills/deaths} Deaths: {deaths}\n");
                     }
                 }
-                */
-                Console.WriteLine(".");
+
+                if (kills / deaths < maxKdRatio || headshots / kills < headshotRate) {
+                    Console.WriteLine(".");
+                }
+
             }
             catch (HttpRequestException ex) {
                 Console.WriteLine("Error: " + ex.Message);
@@ -53,44 +55,52 @@ class Program {
     }
 
     static async Task Main() {
+        bool checkHeadshots = true;
+        bool checkKD = true;
+        float headshotRate = 0.8f;
+        float maxKdRatio = 5.0f;
 
         Console.WriteLine("[+] Currently supported servers #4, #19, #26, #30 or type exit to close");
         Console.WriteLine("[+] Press CTRL + C to close at anytime, highlight and press enter to copy");
         Console.Write("[+] Input server number: ");
         string inputS = Console.ReadLine();
 
-        Console.Write($"[+] Check for headshots true/false: ");
-        bool checkHeadshots = bool.Parse(Console.ReadLine());
-
-        float headshotRate = 0;
-        if (checkHeadshots) {
-            Console.Write($"[+] Input headshot rate as a decimal: ");
-            headshotRate = float.Parse(Console.ReadLine());
-        }
-
-        Console.Write($"[+] Check for KD true/false: ");
-        bool checkKD = bool.Parse(Console.ReadLine());
-
-        float maxKdRatio = 0;
-        if (checkKD) {
-            Console.Write($"[+] Input KD ratio as a decimal: ");
-            maxKdRatio = float.Parse(Console.ReadLine());
-        }
-
         if (inputS.ToLower() == "exit") {
             return;
         }
 
-        if (!checkKD == !checkHeadshots) {
-            Console.Write($"\n\n\n\n\n");
-            await Main();
+        Console.Write($"[+] Default or custom profile?: ");
+        string inputProfile = Console.ReadLine();
+
+        if (inputProfile.ToLower() == "custom") {
+
+            Console.Write($"[+] Check for headshots true/false: ");
+            checkHeadshots = bool.Parse(Console.ReadLine());
+
+            if (checkHeadshots) {
+                Console.Write($"[+] Input headshot rate as a decimal: ");
+                headshotRate = float.Parse(Console.ReadLine());
+            }
+
+            Console.Write($"[+] Check for KD true/false: ");
+            checkKD = bool.Parse(Console.ReadLine());
+
+            if (checkKD) {
+                Console.Write($"[+] Input KD ratio as a decimal: ");
+                maxKdRatio = float.Parse(Console.ReadLine());
+            }
+
+            if (!checkKD && !checkHeadshots) {
+                Console.Write($"\n\n\n\n\n");
+                await Main();
+            }
         }
 
         int input = Convert.ToInt32(inputS);
         string serverNumber = "0";
         string serverType = "0";
 
-        Console.Write($"\n[+] Fun fact each dot is a player without a high headshot rate!!\n\n[-] Results:\n");
+        Console.Write($"\n[+] Fun fact each dot is a player without a high headshot rate or KD ratio!!!\n\n[-] Results:\n");
 
         switch (input) {
             case 4:
