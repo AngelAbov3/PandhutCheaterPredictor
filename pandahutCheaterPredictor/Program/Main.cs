@@ -33,22 +33,18 @@ class Program {
                 
                 if (checkHeadShots) {
                     if (headshots / kills > headshotRate && headshots / kills < 1) {
-                        Console.WriteLine($"\n\n[-] Player has a high headshot rate\n[-] SteamID: {id} Kills: {kills} Headshots: {headshots} Rate: {headshots / kills}% \n");
-                    }
-                    else {
-                        Console.Write(".");
+                        Console.WriteLine($"\n\n[-] Player has a high headshot rate higher than {headshotRate}%\n[-] SteamID: {id} Kills: {kills} Headshots: {headshots} Rate: {headshots / kills}% Deaths: {deaths}\n");
                     }
                 }
-
+                /*
                 if (checkKD) {
                     if (kills/deaths > maxKdRatio) {
 
-                        Console.WriteLine($"\n\n[-] Player has a KD ratio\n[-] SteamID: {id} Kills: {kills} Headshots: {headshots} KD: {kills/deaths} \n");
-                    }
-                    else {
-                        Console.Write(".");
+                        Console.WriteLine($"\n\n[-] Player has a KD ratio higher than {maxKdRatio}\n[-] SteamID: {id} Kills: {kills} Headshots: {headshots} KD: {kills/deaths} Deaths: {deaths}\n");
                     }
                 }
+                */
+                Console.WriteLine(".");
             }
             catch (HttpRequestException ex) {
                 Console.WriteLine("Error: " + ex.Message);
@@ -85,7 +81,7 @@ class Program {
             return;
         }
 
-        if (!checkKD || !checkHeadshots) {
+        if (!checkKD == !checkHeadshots) {
             Console.Write($"\n\n\n\n\n");
             await Main();
         }
