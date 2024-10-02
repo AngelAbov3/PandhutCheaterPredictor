@@ -108,7 +108,7 @@ class Program {
                 serverType = "Semi-Vanilla";
                 break;
             case 19:
-                serverNumber = "625b796a6bceb9c2a0636a82";
+                serverNumber = "66184a9ba186513eabc2c471";
                 serverType = "Unturnov";
                 break;
             case 26:
@@ -116,7 +116,7 @@ class Program {
                 serverType = "VanillaPlus";
                 break;
             case 30:
-                serverNumber = "60f3fee2ff0fa5c5f22b68c1";
+                serverNumber = "661840d3a186513eabc27207";
                 serverType = "Unturnov";
                 break;
         }

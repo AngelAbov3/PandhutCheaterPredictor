@@ -20,3 +20,13 @@ E:\Code\C#\pandahutCheaterPredictor\PandhutCheaterPredictor\pandahutCheaterPredi
 E:\Code\C#\pandahutCheaterPredictor\PandhutCheaterPredictor\pandahutCheaterPredictor\obj\Release\pandahutCheaterPredictor.csproj.CopyComplete
 E:\Code\C#\pandahutCheaterPredictor\PandhutCheaterPredictor\pandahutCheaterPredictor\obj\Release\pandahutCheaterPredictor.exe
 E:\Code\C#\pandahutCheaterPredictor\PandhutCheaterPredictor\pandahutCheaterPredictor\obj\Release\pandahutCheaterPredictor.pdb
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\bin\Release\pandahutCheaterPredictor.exe.config
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\bin\Release\pandahutCheaterPredictor.exe
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\bin\Release\pandahutCheaterPredictor.pdb
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\bin\Release\Newtonsoft.Json.dll
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\bin\Release\Newtonsoft.Json.xml
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\obj\Release\pandahutCheaterPredictor.csproj.AssemblyReference.cache
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\obj\Release\pandahutCheaterPredictor.csproj.CoreCompileInputs.cache
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\obj\Release\pandahut.F2587F3C.Up2Date
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\obj\Release\pandahutCheaterPredictor.exe
+E:\PH\PandhutCheaterPredictor\pandahutCheaterPredictor\obj\Release\pandahutCheaterPredictor.pdb
